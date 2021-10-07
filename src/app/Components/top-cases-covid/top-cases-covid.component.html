@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header class="bg-info text-white">
+        <mat-card-title>Top Cases Covid 19 2021</mat-card-title>
+    </mat-card-header>
+
+    <mat-form-field>
+        <mat-label>Select Province</mat-label>
+        <mat-select  [(value)]="selected" (selectionChange)="selectedChange()">
+          <mat-option *ngFor="let option of options" [value]="option.Iso">{{option.Name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="xmlExport()">XML</button>
+      <button mat-raised-button color="primary" (click)="jsonExport()" >JSON</button>
+      <button mat-raised-button color="primary" (click)="csvExport()">CSV</button>
+
+
+    <mat-card-content>
+        <ngx-datatable #table class='material' [columnMode]="'force'" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='data'>
+        <ngx-datatable-column name="<i class='fa fa-hashtag fa-fw'></i> Name" prop="Name">
+        </ngx-datatable-column>
+        <ngx-datatable-column name="<i class='fa fa-hashtag fa-fw'></i> Confirmed" prop="Confirmed">
+        </ngx-datatable-column>
+        <ngx-datatable-column name="<i class='fa fa-hashtag fa-fw'></i> Deaths" prop="Deaths">
+        </ngx-datatable-column>
+    </ngx-datatable>
+    </mat-card-content>
+</mat-card>
